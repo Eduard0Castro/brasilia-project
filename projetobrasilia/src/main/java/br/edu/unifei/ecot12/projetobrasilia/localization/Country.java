@@ -8,7 +8,9 @@ public class Country extends Locality {
     private String continent, coin;
     private List<State> states = new ArrayList<>();
     private Capital capital;
+    private static Country country = new Country();
 
+    private Country(){}
     
     public String getContinent() {
         return continent;
@@ -33,6 +35,10 @@ public class Country extends Locality {
     }
     public void setCapital(Capital capital) {
         this.capital = capital;
+    }
+
+    public static Country geCountry(){
+        return country;
     }
 
     

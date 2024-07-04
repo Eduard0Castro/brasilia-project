@@ -64,7 +64,7 @@ public class App
 
 
         //Country
-        Country brazil = new Country();
+        Country brazil = Country.geCountry();
         brazil.setName("Brazil");
         brazil.setCoin("Real");
         brazil.setContinent("South America");
@@ -191,6 +191,7 @@ public class App
         System.out.println(brasilia.getUrbanPlanner().getName());
         System.out.println(brasilia.getEngineer().getName());
 
+        fdr.setYear(1960);
         brasilia.setFoundedIn(fdr.getYear());
         brasilia.setParliamentName("National congress");
         brazil.setCapital(brasilia);
