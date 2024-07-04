@@ -3,11 +3,65 @@ import br.edu.unifei.ecot12.projetobrasilia.art.*;
 import br.edu.unifei.ecot12.projetobrasilia.localization.*;
 import br.edu.unifei.ecot12.projetobrasilia.peopleandrecorder.*;
 import br.edu.unifei.ecot12.projetobrasilia.politicalcontext.*;
+import java.lang.Thread;
 
 public class App 
 {
+
+    public static void sleepMain(long miliseconds){
+        try {
+            Thread.sleep(miliseconds);
+        } catch(InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
+    }
+
+    public static void trackStart(){
+
+        new Thread(){
+            @Override
+            public void run(){
+                LyricSector lyricSector = new LyricSector();
+                InstrumentalSector instrumentalSector = new InstrumentalSector();
+        
+                Writer viniciusMoraes = lyricSector.buildArtist();
+                viniciusMoraes.setName("Vinicius de Moraes");
+                viniciusMoraes.setTypeOfArt("Literary");
+                viniciusMoraes.setLiterarySchool("Modernimso");
+                viniciusMoraes.setGenre("Male");
+        
+                Composer tomJobim = instrumentalSector.buildArtist();
+                tomJobim.setName("Tom Jobim");
+                tomJobim.setTypeOfArt("Musical");
+                tomJobim.setComposerDayHours(5);
+                tomJobim.setGenre("Male");
+        
+                Album sinfoniaDaAlvorada = new Album(viniciusMoraes, tomJobim);
+                sinfoniaDaAlvorada.setNumOfTracks(5);
+                sinfoniaDaAlvorada.setTitle("Sinfonia da Alvorada");
+                
+                sleepMain(1500);
+                System.out.println("At the same time, with the development enviroment, a new musical type " + 
+                "emerged in the country. Bossa nova was made in this context, and" + 
+                " could not pass without mention the Brasilia city\n");
+                sleepMain(3000);
+
+                System.out.println("\n" + sinfoniaDaAlvorada.getComposer().getName() + " and " + 
+                sinfoniaDaAlvorada.getWriter().getName() + " made the album " + 
+                sinfoniaDaAlvorada.getTitle() + " for the city contruction process");
+                Song otrabalhoeaconstrucao = new Song();
+                String path = "C:\\Users\\sirle\\OneDrive\\Documentos\\Projeto de Software\\finalproject\\projetobrasilia\\src\\main\\java\\br\\edu\\unifei\\ecot12\\projetobrasilia\\otrabalhoeaconstrucao.wav";
+                otrabalhoeaconstrucao.setSongPath(path);
+        
+                sinfoniaDaAlvorada.getSongs().add(otrabalhoeaconstrucao);
+                sinfoniaDaAlvorada.playTrack(0);
+
+            }
+        }.start();
+}
     public static void main( String[] args )
     {
+
 
         //Country
         Country brazil = new Country();
@@ -23,6 +77,7 @@ public class App
                             brazil.getCapital().getName());
 
         System.out.println();
+        sleepMain(1500);
 
 
         //Suggestion for internalization of the capital:
@@ -46,6 +101,8 @@ public class App
                             + " " + domPedro2.getName());
 
         System.out.println();
+        sleepMain(4000);
+
         
         //Brazilian republic proclamation in 1889:
         Order order = new Order();
@@ -63,6 +120,8 @@ public class App
                             " and the first president was " + brazilRepublic.getPresident().getName());
         fdr.toRule();
 
+        System.out.println();
+        sleepMain(4000);
 
 
         //The suggestion to internalization of the capital(1891):
@@ -80,6 +139,7 @@ public class App
         System.out.println("The chosen region for new capital was " + goias.getRegion());
 
         System.out.println();
+        sleepMain(4000);
 
 
 
@@ -95,8 +155,8 @@ public class App
                             " of the new capital with his Government slogan: " + fdr.getSlogan());
 
         System.out.println();
-
-
+        trackStart();
+        sleepMain(8000);
 
         //Designer for new Capital:
         Architech oscarNiemeyer = new Architech();
@@ -126,18 +186,21 @@ public class App
         brasilia.setUrbanPlanner(lucioCosta);
         brasilia.setEngineer(joaquimCardozo);
 
-        System.out.println("Brasilia was designed by: ");
+        System.out.println("\nBrasilia was designed by: ");
         System.out.println(brasilia.getArchitech().getName());
         System.out.println(brasilia.getUrbanPlanner().getName());
         System.out.println(brasilia.getEngineer().getName());
 
         brasilia.setFoundedIn(fdr.getYear());
         brasilia.setParliamentName("National congress");
+        brazil.setCapital(brasilia);
 
         System.out.println();
+        sleepMain(6000);
+
         System.out.println("Brasilia was founded in " + brasilia.getFoundedIn() +
                             " incomplete, but with many ihanbitants");
-
+        sleepMain(3000);
         System.out.println("The city still draws attention today for its modern architecture" + 
                             " and urban structure. The country has developed a lot with " + 
                             brazilRepublic.getPresident().getName() +
@@ -145,45 +208,6 @@ public class App
                             " is still paying the bills for this development");
 
         System.out.println();
-
-
-        
-        //Album for the construction of the city:
-        LyricSector lyricSector = new LyricSector();
-        InstrumentalSector instrumentalSector = new InstrumentalSector();
-
-        Writer viniciusMoraes = lyricSector.buildArtist();
-        viniciusMoraes.setName("Vinicius de Moraes");
-        viniciusMoraes.setTypeOfArt("Literary");
-        viniciusMoraes.setLiterarySchool("Modernimso");
-        viniciusMoraes.setGenre("Male");
-
-        Composer tomJobim = instrumentalSector.buildArtist();
-        tomJobim.setName("Tom Jobim");
-        tomJobim.setTypeOfArt("Musical");
-        tomJobim.setComposerDayHours(5);
-        tomJobim.setGenre("Male");
-
-
-        Album sinfoniaDaAlvorada = new Album(viniciusMoraes, tomJobim);
-        sinfoniaDaAlvorada.setNumOfTracks(5);
-        sinfoniaDaAlvorada.setTitle("Sinfonia da Alvorada");
-
-        
-        System.out.println("At the same time, with the development enviroment, a new musical type " + 
-                               "emerged in the country. Bossa nova was made in this context, and" + 
-                               " could not pass without mention the Brasilia city");
-        System.out.println("\n" + sinfoniaDaAlvorada.getComposer().getName() + " and " + 
-                                sinfoniaDaAlvorada.getWriter().getName() + " made the album " + 
-                                sinfoniaDaAlvorada.getTitle() + " for the city contruction process");
-
-        Song otrabalhoeaconstrucao = new Song();
-        String path = "C:\\Users\\sirle\\OneDrive\\Documentos\\Projeto de Software\\finalproject\\projetobrasilia\\src\\main\\java\\br\\edu\\unifei\\ecot12\\projetobrasilia\\otrabalhoeaconstrucao.wav";
-        otrabalhoeaconstrucao.setSongPath(path);
-
-        sinfoniaDaAlvorada.getSongs().add(otrabalhoeaconstrucao);
-        sinfoniaDaAlvorada.playTrack(0);
-
 
     }
 }

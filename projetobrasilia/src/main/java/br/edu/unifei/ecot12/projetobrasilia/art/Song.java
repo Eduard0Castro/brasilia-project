@@ -30,7 +30,7 @@ public class Song extends MusicalWork{
         this.songPath = songPath;
     }
 
-    public void play(){
+    protected void play(){
         try {
             // Obtendo o arquivo de som
             File arquivoSom = new File(this.songPath);
