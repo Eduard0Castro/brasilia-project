@@ -83,9 +83,8 @@ public class App
         //Suggestion for internalization of the capital:
         Monarchy brazilMonarchy = new Monarchy();
         brazilMonarchy.setTypology("Constitutional monarchy");
-        FederalGnmt fdr = new FederalGnmt();
+        FederalGnmt fdr = new FederalGnmt(brazilMonarchy);
         brazil.setGnmt(fdr);
-        fdr.setRegime(brazilMonarchy);
         fdr.setYear(1889);
         fdr.toRule();
 
@@ -108,14 +107,15 @@ public class App
         Order order = new Order();
         Conservative conservative = new Conservative();
         order.setIdeology(conservative);
-        fdr = order.buildFederal();
-        fdr.setYear(1889);
-
         President president = President.getPresident();
         president.setName("Deodoro da Fonseca");
         Republic brazilRepublic = new Republic(president);
         brazilRepublic.setHeadOfState(president.getName());
-        fdr.setRegime(brazilRepublic);
+        order.setRegime(brazilRepublic);
+        fdr = order.buildFederal();
+        fdr.setYear(1889);
+
+
         System.out.println("The republic proclamation in Brazil was in " + fdr.getYear() + 
                             " and the first president was " + brazilRepublic.getPresident().getName());
         fdr.toRule();
