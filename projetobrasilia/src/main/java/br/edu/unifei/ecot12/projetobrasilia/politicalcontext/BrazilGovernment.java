@@ -8,6 +8,10 @@ public abstract class BrazilGovernment {
 
     public abstract void toRule();
 
+    public BrazilGovernment(Regime regime){
+        this.regime = regime;
+    }
+
     public int getYear() {
         return year;
     }
